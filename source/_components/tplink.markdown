@@ -146,14 +146,14 @@ sensor:
 The `tplink` platform allows you to detect presence by looking at connected devices to a [TP-Link](https://www.tp-link.com) router.
 
 Currently supported devices includes the following:
-
+- Archer C1200 firmware version 180122
 - Archer C7 firmware version 150427
 - Archer C9 firmware version 150811
 - EAP-225 AP with latest firmware version
 - Archer D9 firmware version 0.9.1 0.1 v0041.0 Build 160224 Rel.59129n
 
 <p class='note'>
-TP-Link devices typically only allow one login at a time to the admin console.  This component will count towards your one allowed login. Depending on how aggressively you configure device_tracker you may not be able to access the admin console of your TP-Link device without first stopping Home Assistant. Home Assistant takes a few seconds to login, collect data, and log out. If you log into the admin console manually, remember to log out so that Home Assistant can log in again.
+TP-Link devices typically only allow one login at a time to the admin console.  This component will count towards your one allowed login. Depending on how aggressively you configure device_tracker you may not be able to access the admin console of your TP-Link device without first stopping Home Assistant. Home Assistant takes a few seconds to login, collect data, and log out. If you log into the admin console manually, remember to log out so that Home Assistant can log in again. Some TP-Link routers will lock the login screen when Home Asisstant is logged in. Others, like the C1200, will allow you to login and "boot" home assistant out, but please note that doing so will prevent the device tracker component from reporting changes to the state of your devices until you log out of the router and reboot Home Assistant.
 </p>
 
 ### {% linkable_title Configuration %}
@@ -184,7 +184,7 @@ password:
   type: string
 {% endconfiguration %}
 
-For Archer C9 models running firmware version 150811 or later please use the encrypted password you can retrieve like this:
+For Archer C9 models running firmware version 150811 or later and Archer C1200 models running 180122 or later, please use the encrypted password you can retrieve like this:
 
 1. Go to the login page of your router. (default: 192.168.0.1)
 2. Type in the password you use to login into the password field.
@@ -196,3 +196,5 @@ For Archer C9 models running firmware version 150811 or later please use the enc
 See the [device tracker component page](/components/device_tracker/) for instructions how to configure the people to be tracked.
 
 For Archer D9 model the default ip is 192.168.1.1, the username is not necessary and you can leave that field blank.
+
+For Archer C1200 model the router's web UI does not require a username, but you still need to enter admin as your username in the configuration file for the device tracker to configure properly.
